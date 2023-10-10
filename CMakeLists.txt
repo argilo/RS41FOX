@@ -36,6 +36,7 @@ add_definitions(-DUSE_STDPERIPH_DRIVER)
 add_definitions(-DSUPPORT_CPLUSPLUS)
 add_definitions(-D__ASSEMBLY__)
 
+add_definitions(-DTRANSMIT_FREQUENCY=${TRANSMIT_FREQUENCY}f)
 add_definitions(-DBEACON_NUM="${BEACON_NUM}")
 
 SET(LINKER_SCRIPT ${PROJECT_SOURCE_DIR}/arm-gcc-link.ld)

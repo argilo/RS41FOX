@@ -9,7 +9,6 @@
 
 
 //************GLOBAL Settings*****************
-#define TRANSMIT_FREQUENCY  434.650f // MHz. (Default is within the ISM band. ARDF Frequency in Australia is 439.4 MHz)
 #define CALLSIGN "VE3IRR" // Put your callsign here, max. 15 characters
 
 // TX Power
