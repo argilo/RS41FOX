@@ -9,7 +9,7 @@ SET(CMAKE_SYSTEM_VERSION 1)
 #
 
 if (UNIX)
-    set(TOOLCHAIN_DIR "$ENV{HOME}/opt/gcc-arm-none-eabi/bin")
+    set(TOOLCHAIN_DIR "/usr/bin")
     CMAKE_FORCE_C_COMPILER(${TOOLCHAIN_DIR}/arm-none-eabi-gcc GNU)
     CMAKE_FORCE_CXX_COMPILER(${TOOLCHAIN_DIR}/arm-none-eabi-g++ GNU)
 else ()
