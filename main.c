@@ -112,7 +112,7 @@ int main(void) {
     send_morse_ident();
     _delay_ms(2000);
 
-    sendMorse("CYBERPICKLE TRACKER 1", MORSE_WPM);
+    sendMorse("CYBERPICKLE TRACKER " BEACON_NUM, MORSE_WPM);
     _delay_ms(1000);
 
     for(int k = 0; k < ONOFF_REPEATS; k++){

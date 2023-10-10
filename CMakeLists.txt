@@ -36,6 +36,8 @@ add_definitions(-DUSE_STDPERIPH_DRIVER)
 add_definitions(-DSUPPORT_CPLUSPLUS)
 add_definitions(-D__ASSEMBLY__)
 
+add_definitions(-DBEACON_NUM="${BEACON_NUM}")
+
 SET(LINKER_SCRIPT ${PROJECT_SOURCE_DIR}/arm-gcc-link.ld)
 SET(COMMON_FLAGS " -mcpu=cortex-m3 -mthumb -Wall -ffunction-sections -g -O3 -g -nostartfiles ")
 SET(CMAKE_CXX_FLAGS "${COMMON_FLAGS} -std=c++11")
