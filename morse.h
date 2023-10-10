@@ -9,19 +9,13 @@
 #include "radio.h"
 #include "delay.h"
 
-// All morse delays
-#define MORSE_DELAY 1200 / MORSE_WPM
-#define MORSE_DELAY_DOT (MORSE_DELAY * 1)
-#define MORSE_DELAY_DASH (MORSE_DELAY * 3)
-#define MORSE_DELAY_SPACE (MORSE_DELAY * 7)
-
 // All morse characters
 #define MORSE_DOT '.'
 #define MORSE_DASH '-'
 
-void sendDotOrDash (char unit);
-void sendMorseSequence (char* sequence);
-void sendMorse(char* message);
+void sendDotOrDash (char unit, int wpm);
+void sendMorseSequence (char* sequence, int wpm);
+void sendMorse(char* message, int wpm);
 
 
 #endif //RS41FOX_MORSE_H

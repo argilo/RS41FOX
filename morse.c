@@ -60,44 +60,44 @@ char* MORSE_SYMBOLS[] = {
 
 
 // Send a single character
-void sendDotOrDash (char unit) {
+void sendDotOrDash (char unit, int wpm) {
 
   radio_enable_tx();
 
   // Unit is a dot (500 ms)
   if (unit == MORSE_DOT) {
-    _delay_ms(MORSE_DELAY_DOT);
+    _delay_ms(1200 / wpm);
   }
 
   // Unit is a dash (1500 ms)
   if (unit == MORSE_DASH) {
-    _delay_ms(MORSE_DELAY_DASH);
+    _delay_ms((1200 / wpm) * 3);
   }
 
   // Inter-element gap
   radio_inhibit_tx();
-  _delay_ms(MORSE_DELAY);
+  _delay_ms(1200 / wpm);
 }
 
 
-void sendMorseSequence (char* sequence) {
+void sendMorseSequence (char* sequence, int wpm) {
 
   // Counter
   int i = 0;
 
   // Loop through every character until an 'end-of-line' (null) character is found
   while (sequence[i] != '\0') {
-    sendDotOrDash(sequence[i]);
+    sendDotOrDash(sequence[i], wpm);
     i++;
   }
 
   // Delay between every letter
-  _delay_ms(MORSE_DELAY * 3);
+  _delay_ms((1200 / wpm) * 3);
 }
 
 
 
-void sendMorse(char* message) {
+void sendMorse(char* message, int wpm) {
 
   int i = 0;
   while (message[i] != '\0') {
@@ -105,35 +105,35 @@ void sendMorse(char* message) {
 
       // Lower case letters
       if (current >= 'a' && current <= 'z') {
-        sendMorseSequence(MORSE_LETTERS[current - 'a']);
+        sendMorseSequence(MORSE_LETTERS[current - 'a'], wpm);
       }
 
       // Capital case letters
       else if (current >= 'A' && current <= 'Z') {
-        sendMorseSequence(MORSE_LETTERS[current - 'A']);
+        sendMorseSequence(MORSE_LETTERS[current - 'A'], wpm);
       }
 
       // Numbers
       else if (current >= '0' && current <= '9') {
-        sendMorseSequence(MORSE_NUMBERS[current - '0']);
+        sendMorseSequence(MORSE_NUMBERS[current - '0'], wpm);
       }
 
       else if (current == '.') {
-        sendMorseSequence(MORSE_SYMBOLS[0]);
+        sendMorseSequence(MORSE_SYMBOLS[0], wpm);
       }
 
       else if (current == '/') {
-        sendMorseSequence(MORSE_SYMBOLS[1]);
+        sendMorseSequence(MORSE_SYMBOLS[1], wpm);
       }
 
       // Space character (3500  ms)
       else if (current == ' ') {
-        _delay_ms(MORSE_DELAY_SPACE);
+        _delay_ms((1200 / wpm) * 7);
       }
 
       // Treat all other characters as a space.
       else {
-        _delay_ms(MORSE_DELAY_SPACE);
+        _delay_ms((1200 / wpm) * 7);
       }
 
     i++;

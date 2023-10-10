@@ -140,7 +140,7 @@ void send_morse_ident(){
   int _voltage_mv = voltage % 100;
 
   sprintf(buf_tx, "DE %s FOX %d.%02dV", callsign, _voltage_v, _voltage_mv);
-  sendMorse(buf_tx);
+  sendMorse(buf_tx, MORSE_WPM);
 }
 
 
@@ -192,7 +192,7 @@ void check_supply_voltage(){
   #endif
 
   if( (float)(voltage)/100 < LOW_VOLTAGE_CUTOUT){
-    sendMorse("LOW BATTERY ");
+    sendMorse("LOW BATTERY ", MORSE_WPM);
     power_down();
   }
 }
@@ -210,7 +210,7 @@ void check_gps_lock(){
 
   if(gpsData.fix >= 3){
     // We have GPS lock!
-    sendMorse("GPS LOCK ");
+    sendMorse("GPS LOCK ", MORSE_WPM);
     gpsFixed = 1;
 
     // Disable the GPS unit. This saves ~200mW of power.
