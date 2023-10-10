@@ -97,7 +97,7 @@ int main(void) {
 
   // For some reason we have to do this again...
   spi_init();
-  radio_set_tx_frequency(TRANSMIT_FREQUENCY);   
+  radio_set_tx_frequency(TRANSMIT_FREQUENCY);
   radio_rw_register(0x71, 0x00, 1);
 
   // If we aren't doing a low-voltage GPS position beacon,
@@ -158,7 +158,7 @@ void send_low_battery_beacon(){
 }
 
 void power_down(){
-  // Pulsing GPIO 12 de-latches the power supply circuitry, 
+  // Pulsing GPIO 12 de-latches the power supply circuitry,
   // killing power to the board.
   GPIO_SetBits(GPIOA, SHUTDOWN);
 }
@@ -174,7 +174,7 @@ void check_supply_voltage(){
     // Send the calculated GPS position if we have GPS lock.
     if(gpsData.fix < 3){
       sendMorse("NO GPS LOCK ");
-    } 
+    }
     else {
       // Convert raw lat/lon values into degrees and decimal degree values.
       uint8_t lat_d = (uint8_t) abs(gpsData.lat_raw / 10000000);
@@ -182,7 +182,7 @@ void check_supply_voltage(){
       uint8_t lon_d = (uint8_t) abs(gpsData.lon_raw / 10000000);
       uint32_t lon_fl = (uint32_t) abs(abs(gpsData.lon_raw) - lon_d * 10000000) / 1000;
 
-      sprintf(buf_tx, "VK5QI FOX %s%d.%04ld %s%d.%04ld ",        
+      sprintf(buf_tx, "VK5QI FOX %s%d.%04ld %s%d.%04ld ",
           gpsData.lat_raw < 0 ? "S" : "N", lat_d, lat_fl,
           gpsData.lon_raw < 0 ? "W" : "E", lon_d, lon_fl
       );
@@ -201,7 +201,7 @@ void check_gps_lock(){
   // If we have lock, return immediately.
   if(gpsFixed){
     return;
-  } 
+  }
 
   // Otherwise, check to see if we have lock.
   else {
