@@ -110,6 +110,9 @@ int main(void) {
   while (1) {
     // Loop.
     send_morse_ident();
+    _delay_ms(2000);
+
+    sendMorse("CYBERPICKLE TRACKER 1", MORSE_WPM);
     _delay_ms(1000);
 
     for(int k = 0; k < ONOFF_REPEATS; k++){
@@ -139,8 +142,8 @@ void send_morse_ident(){
   int _voltage_v = voltage/100;
   int _voltage_mv = voltage % 100;
 
-  sprintf(buf_tx, "DE %s FOX %d.%02dV", callsign, _voltage_v, _voltage_mv);
-  sendMorse(buf_tx, MORSE_WPM);
+  sprintf(buf_tx, "DE %s %d.%02dV", callsign, _voltage_v, _voltage_mv);
+  sendMorse(buf_tx, 25);
 }
 
 
